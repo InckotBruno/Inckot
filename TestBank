@@ -1,0 +1,45 @@
+##########################
+NODE
+##########################
+
+import * as readline from 'node:readline/promises';
+
+import { stdin as input, stdout as output } from 'node:process';
+
+var contas = { 'varkkaler': 500, 'bandeclay': 200 }
+
+const rl = readline.createInterface({ input, output });
+
+var menu = "";
+
+var hero = await rl.question('Qual seu nome? ');
+console.log ("Bom dia " + hero );
+
+console.log(menu);
+
+while(menu !== "bye"){
+    menu = await rl.question('Bom dia, o que gostaria de fazer com seu dinheiro? ');
+    if (menu === "deposit"){
+        var depositAnswer = await rl.question('Quanto quer depositar? ');
+        console.log ("Você depositou " + depositAnswer );
+    }
+    if (menu === "withdraw"){
+        var withdrawAnswer = await rl.question('Quanto quer sacar? ');
+        console.log ("Você sacou " + withdrawAnswer);
+
+    }
+    if (menu === "transfer"){
+        var transferAnswer = await rl.question('Quanto quer transferir? ');
+        console.log ("Você quer transferir " + transferAnswer + " para quem?" );
+
+    }  else if (transferAnswer === transferAnswer);{
+        var paraQuem = await rl.question("Você deseja transferir" + paraQuem + transferAnswer + "?");
+        console.log ("Você" + withdrawAnswer );
+    }  else if (transferAnswer =! hero);
+        console.log ("Essa pessoa não existe no nosso banco de dados, por favor escolher alguém valido para transação" );
+    }
+
+
+
+
+rl.close();
