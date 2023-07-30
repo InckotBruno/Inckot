@@ -1,0 +1,38 @@
+# Python
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+import pandas as pd
+import time
+
+driver = webdriver.Chrome()
+
+contacts = pd.read_csv("contatos.csv", dtype=str).to_numpy()
+
+driver.get("https://web.whatsapp.com/send?phone=" + contacts[0][0])
+print("Scan QR Code, And then Enter")
+input()
+print("Logged In")
+
+for contact in contacts:
+    numero = contact[0]
+    msg =  contact[1]
+
+    print("Enviando mensagem para:" + numero)
+    driver.get("https://web.whatsapp.com/send?phone=" + numero) # abre o whatsapp web
+
+    time.sleep(4) # espera carregar a conversa
+    
+    inp_xpath = '/html/body/div[1]/div/div/div[5]/div/footer/div[1]/div/span[2]/div/div[2]/div[1]/div/div/p'
+    input_box = driver.find_element('xpath', inp_xpath) # pega a caixa de texto
+
+    time.sleep(1) # espera um segundo pra carregar os efeitos da pagina
+
+    input_box.send_keys(msg + Keys.ENTER) # manda a mensagem e pressiona enter
+    
+    time.sleep(1)
+
+
